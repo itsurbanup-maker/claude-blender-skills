@@ -20,7 +20,10 @@ description: Use Jev - the system-1 decision model that only answers true/false,
 ## Setup
 
 1. Get access: sign up with the maker (it left its wait-list recently) or use it through **OpenRouter**, which lists new
-   models as they ship. Look up the exact model slug on the provider's model list - do not guess it.
+   models as they ship. On OpenRouter (checked November 2026) the maker is **TypeSafe** and its listed model is
+   `typesafe/jev-router`: it picks the best model and reasoning effort for each request and then answers with that model,
+   so it returns text, not a bare label. The raw System One model is linked as `typesafe/jev-latest`. Confirm the current
+   slugs on the model list - do not guess them.
 2. Put the key in the environment, never in a file in the repo:
    `export OPENROUTER_API_KEY=...` and `export JEV_MODEL=<slug from the model list>`
    (for the maker's own endpoint: `JEV_BASE_URL=<its OpenAI-compatible base URL>` and `JEV_API_KEY=...`).
