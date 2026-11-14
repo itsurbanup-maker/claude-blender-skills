@@ -18,6 +18,22 @@ renders the scene in your Blender. You don't need to watch the videos first.
 <img src="docs/img/car_film.jpg" width="32%" alt="Snowy night car film">
 </p>
 
+### JEV OS: an agentic operating system with Claude + Jev
+
+A second set of skills, distilled from seven videos about building a personal "Claude OS" with Jev as the router
+(sources and per-video notes: [`skills/jev-os/notes/sources.md`](skills/jev-os/notes/sources.md)).
+
+| Skill | What it does |
+|---|---|
+| [`jev-os`](skills/jev-os/SKILL.md) | Umbrella: architecture (voice -> Jev -> tier 1/2/3 -> Claude), ARMS framework, build order, apps, dashboard, phone access |
+| [`jev-router`](skills/jev-router/SKILL.md) | Jev setup, model routing, skill finding, classification at volume, meaning search; `scripts/jev_router.py` and a `/jev on\|off` command |
+| [`os-skills-routines`](skills/os-skills-routines/SKILL.md) | Skill types, wildcards, self-improving skills, active/passive/capped routines; `/note`, `/calibrate`, `/wildcard`, `/cleanup` templates |
+| [`os-memory`](skills/os-memory/SKILL.md) | Plain-text maps, Obsidian vault (raw/wiki/outputs), context rot, purposeful compaction, prompt cache |
+| [`claude-dashboards`](skills/claude-dashboards/SKILL.md) | Business dashboards with the five pillars |
+| [`claude-video-direction`](skills/claude-video-direction/SKILL.md) | Motion graphics in code: one-shot, storyboard, direct |
+| [`fable-5-2-prompting`](skills/fable-5-2-prompting/SKILL.md) | The ten prompting rule changes for Fable 5.2 |
+| [`claude-code-setup`](skills/claude-code-setup/SKILL.md) | The $20 beginner coding setup on a Mac |
+
 ## Contents
 
 - [What you need](#what-you-need)
