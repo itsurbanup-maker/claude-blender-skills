@@ -11,6 +11,7 @@ renders the scene in your Blender. You don't need to watch the videos first.
 | [`blender-film`](skills/blender-film/SKILL.md) | 10 s night FPV drone shot through a city: storyboard, real physics path, night lighting, sound designed from the 3D motion, overnight render, white clay build-up reveal | [How I Built This Insane Realistic Animation Using Claude in Blender](https://www.youtube.com/watch?v=ZN-Ugd-4HDM) |
 | [`blender-forest`](skills/blender-forest/SKILL.md) | Ultra-realistic forest with a car driving through it, built by following a long tutorial: own scatter system, own car rig, render benchmark | [How to Make an Ultra-Realistic 3D Environment Using Claude](https://www.youtube.com/watch?v=Udahf4a0UwQ) |
 | [`blender-car-film`](skills/blender-car-film/SKILL.md) | 20 s cinematic story film on a snowy night: real car model, set built in Python, snow particles, 6 hand-held cameras, render from 5-8 h down to 1 h | [How I Built This 3D Short Film With Claude in Blender](https://www.youtube.com/watch?v=BagZ55ac4xs) |
+| [`claude-agent-rules`](skills/claude-agent-rules/SKILL.md) | The 7 rules from Anthropic's prompting guide for Fable 5.2 / Opus 5.5: effort level, finish the job, delete old instructions, own the project, fewer sub-agents, progress updates, readable reports. Plus a ready `CLAUDE.md` for long runs | [Fable 5.2: new prompting rules](https://youtu.be/M-SCs4D2uZg) |
 
 <p>
 <img src="docs/img/night_final.jpg" width="32%" alt="Night city drone shot">
@@ -168,6 +169,17 @@ Full steps and scripts: [`skills/blender-car-film`](skills/blender-car-film/SKIL
 - **No colour grade by default.** The look comes from the lighting. Grade only a shot that needs it.
 - **If the hero looks wrong, change the hero.** Keep the city, path and cameras.
 - **Test small, render big.** Low-quality stills after every step, final quality only at the end.
+
+## Rules for Claude itself
+
+The [`claude-agent-rules`](skills/claude-agent-rules/SKILL.md) skill holds the 7 rules from Anthropic's prompting guide for
+Fable 5.2. For a long Blender run, copy [`templates/CLAUDE.md`](skills/claude-agent-rules/templates/CLAUDE.md) into your project
+folder and set effort to high:
+
+- **Finish the job.** Don't stop while work is left; report what is blocked on purpose.
+- **The project is yours.** Claude cleans up instead of only pointing at problems (costs about 1.5x; leave it out for small jobs).
+- **Delete old instructions.** Stale notes and "never" rules without exceptions make new models worse.
+- **Few sub-agents, on a cheap model.** Progress in one line every few actions. A final report a person can read.
 
 ## Render without losing a night
 

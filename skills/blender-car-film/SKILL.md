@@ -15,7 +15,8 @@ school and a hospital, parks at the house, the engine turns off and the porch li
 - Find a real model, don't build one: the car is a free CC BY model, trees, lamp, hydrant, fence, textures and sky are Poly Haven (CC0).
   Claude builds the simple things in Python: road, snow banks, school, hospital, house.
 - Write your own code, read anything you download, ask before any long render.
-- Never render inside the live Blender window (it crashes). Render in background Blender from a saved .blend.
+- Never render the film inside the live Blender window (it crashes), except small preview stills with `tools/preview.py`.
+  Render shots in background Blender from a saved .blend.
 
 ## 0. Setup and the live bridge
 
