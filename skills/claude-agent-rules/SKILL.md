@@ -1,6 +1,6 @@
 ---
 name: claude-agent-rules
-description: The 7 working rules from Anthropic's prompting guide for Fable 5.2 (also good for Opus 5.5) - pick the effort level, finish the job, clean out old instructions, own the project, don't push sub-agents, report progress, write a final report a person can read. Use when writing or cleaning up a CLAUDE.md / AGENTS.md / project instructions / a skill, when setting up a long agent run (a Blender film, a website, a game), when Claude stops halfway, works silently, writes dense reports, or costs too much, or when someone asks "how do I prompt Fable 5.2".
+description: The 7 working rules from Anthropic's prompting guide for Fable 5.2 (also good for Opus 5.5) - pick the effort level, finish the job, clean out old instructions, own the project, don't push sub-agents, report progress, write a final report a person can read. Use when writing or cleaning up a CLAUDE.md / AGENTS.md / project instructions / a skill, when setting up a long agent run in Blender, Adobe Premiere Pro or Adobe After Effects (or a website, a game), when Claude stops halfway, works silently, writes dense reports, or costs too much, or when someone asks "how do I prompt Fable 5.2".
 ---
 
 # Working rules for Claude agents (Fable 5.2 / Opus 5.5)
@@ -96,12 +96,26 @@ Write the final report for a smart person who did not see your work. Put the mai
 Use simple words and short sentences, one idea per sentence. Don't use abbreviations you made up while working.
 ```
 
+## The rules in Blender, Premiere Pro and After Effects
+
+The 7 rules are the same in every app. What changes is how Claude reaches the app, and where a long job hides.
+
+| | Blender | Premiere Pro | After Effects |
+|---|---|---|---|
+| How Claude controls it | Python, live through `tools/bridge.py`, or `blender -b` in the background | Writes files Premiere opens: an XML timeline, ProRes clips (`premiere-edit`) | ExtendScript `.jsx` sent to the open app, `aerender` for renders (`after-effects-comp`) |
+| Long job (rules 2, 6) | the overnight Cycles render | encoding every shot | the `aerender` render |
+| "Blocked on purpose" (rule 2) | a render the user hasn't approved yet | the creative cut: timing, sound, grade, export | a full render that blocks the GPU |
+| Whose project (rule 4) | the scene and scripts are Claude's to clean up | `shots.json` and the XML are Claude's; the edit in Premiere is the user's | the comps the script built are Claude's; hand-made comps are the user's |
+| Report (rule 7) | frames rendered, time per frame, broken frames | shots, length, fps, size of the sequence | frames rendered and checked, effects skipped |
+
+Add one line for the app to the template, for example: "Premiere: build the timeline as XML; I do the creative edit."
+
 ## How to use this skill
 
 1. **New project:** copy `templates/CLAUDE.md` into the project folder. Drop rule 4 for small targeted jobs, rule 6 for unattended runs.
 2. **Existing instructions:** apply rule 3. Read the CLAUDE.md / AGENTS.md / skills line by line. For each rule ask: still true?
    Contradicts another? "Never" without an exception? A rigid style limit? "Always use sub-agents"? Show the user a list of
    proposed deletions and changes before editing.
-3. **Long run** (a Blender render, a website, a game): effort high, rules 2 + 4 in the instructions, plus "check your own result
+3. **Long run** (a Blender render, a Premiere or After Effects job, a website, a game): effort high, rules 2 + 4 in the instructions, plus "check your own result
    when you are done". That is all the video's demo used: an empty folder, a one-line prompt, no colours or examples.
 4. **Approving steps:** write what you approve (rule 2).

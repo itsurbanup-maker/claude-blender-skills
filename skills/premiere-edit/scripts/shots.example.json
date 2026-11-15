@@ -1,0 +1,15 @@
+{
+  "name": "last_drive_home",
+  "fps": 30,
+  "frames": "C:/Users/you/blender-car-film/frames/f_%04d.png",
+  "shots_dir": "C:/Users/you/blender-car-film/edit/shots",
+  "audio": "C:/Users/you/blender-car-film/audio/mix.wav",
+  "shots": [
+    {"name": "shot1", "first": 1,   "last": 90},
+    {"name": "shot2", "first": 91,  "last": 151},
+    {"name": "shot3", "first": 152, "last": 211},
+    {"name": "shot4", "first": 212, "last": 331},
+    {"name": "shot5", "first": 332, "last": 436},
+    {"name": "shot6", "first": 437, "last": 600}
+  ]
+}

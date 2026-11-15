@@ -1,6 +1,7 @@
 # Claude Blender Skills
 
-Free Claude skills that make **realistic Blender animations**. Each one is the complete workflow behind one of my YouTube videos,
+Free Claude skills that make **realistic Blender animations**, then edit them in **Adobe Premiere Pro** and finish them in
+**Adobe After Effects**. Each Blender skill is the complete workflow behind one of my YouTube videos,
 with the real scripts that made the shot. Install a skill, tell Claude your idea, and it plans, builds, lights, animates and
 renders the scene in your Blender. You don't need to watch the videos first.
 
@@ -12,6 +13,8 @@ renders the scene in your Blender. You don't need to watch the videos first.
 | [`blender-forest`](skills/blender-forest/SKILL.md) | Ultra-realistic forest with a car driving through it, built by following a long tutorial: own scatter system, own car rig, render benchmark | [How to Make an Ultra-Realistic 3D Environment Using Claude](https://www.youtube.com/watch?v=Udahf4a0UwQ) |
 | [`blender-car-film`](skills/blender-car-film/SKILL.md) | 20 s cinematic story film on a snowy night: real car model, set built in Python, snow particles, 6 hand-held cameras, render from 5-8 h down to 1 h | [How I Built This 3D Short Film With Claude in Blender](https://www.youtube.com/watch?v=BagZ55ac4xs) |
 | [`claude-agent-rules`](skills/claude-agent-rules/SKILL.md) | The 7 rules from Anthropic's prompting guide for Fable 5.2 / Opus 5.5: effort level, finish the job, delete old instructions, own the project, fewer sub-agents, progress updates, readable reports. Plus a ready `CLAUDE.md` for long runs | [Fable 5.2: new prompting rules](https://youtu.be/M-SCs4D2uZg) |
+| [`premiere-edit`](skills/premiere-edit/SKILL.md) | Edit the rendered film in Premiere Pro: one ProRes clip per shot, the whole timeline built as XML (shots, sound, markers), you do the creative cut | - |
+| [`after-effects-comp`](skills/after-effects-comp/SKILL.md) | Finish it in After Effects: Claude scripts your open AE (comps per shot, FILM comp, sound, lens / glow / grain look, title) and renders with aerender, resumable | - |
 
 <p>
 <img src="docs/img/night_final.jpg" width="32%" alt="Night city drone shot">
@@ -25,6 +28,7 @@ renders the scene in your Blender. You don't need to watch the videos first.
 - [Install](#install)
 - [Quick start: your first shot](#quick-start-your-first-shot)
 - [How Claude controls Blender](#how-claude-controls-blender)
+- [Premiere Pro and After Effects](#premiere-pro-and-after-effects)
 - [The skills in detail](#the-skills-in-detail)
 - [Rules that make it look real](#rules-that-make-it-look-real)
 - [Render without losing a night](#render-without-losing-a-night)
@@ -39,6 +43,7 @@ renders the scene in your Blender. You don't need to watch the videos first.
 - **Blender 4.4 or newer** (everything was made on Blender 5.2), free from blender.org.
 - **A GPU** for Cycles. All three films were rendered on one NVIDIA RTX 5070 (12 GB). Smaller GPUs work, renders just take longer.
 - **Python 3** and **ffmpeg** on your PATH. `numpy` and `scipy` for the physics and sound steps of `blender-film`.
+- **Optional: Premiere Pro and/or After Effects** (2023 or newer) for the edit and the finish. Windows or macOS.
 - **Your own assets**: a city or environment pack you own, or free CC0 assets from Poly Haven. No paid add-ons are needed.
 
 ## Install
@@ -62,7 +67,7 @@ cp -r claude-blender-skills/skills/* ~/.claude/skills/
 ```
 
 Restart Claude Code. The skills load by themselves when you ask for "a cinematic Blender shot", "a realistic forest in Blender",
-"a short film in Blender", or any single step ("night lighting for my city", "a clay build-up reveal").
+"a short film in Blender", "edit my renders in Premiere", "finish it in After Effects", or any single step ("night lighting for my city", "a clay build-up reveal").
 
 ### Claude app (claude.ai / desktop)
 
@@ -101,6 +106,23 @@ Claude Code  --python tools/send.py script.py-->  bridge.py inside your open Ble
 - `tools/send.py` sends a script file (`python tools/send.py scripts/06_night.py`) or one line
   (`python tools/send.py -c "print(bpy.data.filepath)"`) and prints what came back.
 - You watch every change happen in your own Blender window. Long renders run in background Blender (`blender -b`) from a saved file.
+
+## Premiere Pro and After Effects
+
+The Blender skills end with a folder of PNG frames and a sound mix. Two skills take it from there. Both read the same
+`shots.json`: the storyboard in numbers (shot names, first and last frame, fps, sound).
+
+```
+Blender frames + mix.wav --> after-effects-comp: comps, look, title, aerender --> frames
+                         \-> premiere-edit: ProRes per shot + XML timeline --> File > Import in Premiere --> your edit --> export
+```
+
+- **Premiere Pro**: Claude can't click inside Premiere, so it writes what Premiere opens. `encode_shots.py` makes one ProRes
+  clip per shot. `make_xml.py` builds the sequence as Final Cut Pro 7 XML: shots on V1, the mix on A1, a marker per shot.
+  You import it and do the creative cut, sound and export.
+- **After Effects**: `run_jsx.py` sends ExtendScript to your open After Effects (`AfterFX.exe -r` on Windows, `osascript` on
+  macOS) and prints its log. `build_comp.jsx` builds the comps. `render.py` renders with `aerender` in chunks: run it again
+  after a crash and it continues. Then it checks every frame and encodes the MP4.
 
 ## The skills in detail
 
@@ -158,6 +180,11 @@ Full steps and scripts: [`skills/blender-forest`](skills/blender-forest/SKILL.md
 
 Full steps and scripts: [`skills/blender-car-film`](skills/blender-car-film/SKILL.md).
 
+### `premiere-edit` and `after-effects-comp`
+
+Full steps: [`skills/premiere-edit`](skills/premiere-edit/SKILL.md), [`skills/after-effects-comp`](skills/after-effects-comp/SKILL.md).
+The shot list example in both is the real one from `blender-car-film`.
+
 ## Rules that make it look real
 
 - **Storyboard before Blender.** Every later decision gets checked against it.
@@ -173,7 +200,7 @@ Full steps and scripts: [`skills/blender-car-film`](skills/blender-car-film/SKIL
 ## Rules for Claude itself
 
 The [`claude-agent-rules`](skills/claude-agent-rules/SKILL.md) skill holds the 7 rules from Anthropic's prompting guide for
-Fable 5.2. For a long Blender run, copy [`templates/CLAUDE.md`](skills/claude-agent-rules/templates/CLAUDE.md) into your project
+Fable 5.2. For a long Blender, Premiere or After Effects job, copy [`templates/CLAUDE.md`](skills/claude-agent-rules/templates/CLAUDE.md) into your project
 folder and set effort to high:
 
 - **Finish the job.** Don't stop while work is left; report what is blocked on purpose.
@@ -203,7 +230,7 @@ folder and set effort to high:
 **Do I need the same assets?** No. Object and material names in the scripts come from the original scenes. Tell Claude what you
 have and it adapts the scripts.
 
-**Mac or Linux?** The Blender and Python parts work everywhere. The `.ps1` and `.cmd` helpers are Windows-only. Ask Claude for the
+**Mac or Linux?** The Blender and Python parts work everywhere. Premiere Pro and After Effects run on Windows and macOS only. The `.ps1` and `.cmd` helpers are Windows-only. Ask Claude for the
 shell version.
 
 **No NVIDIA GPU?** Use Cycles with your GPU's backend (Metal, HIP) or EEVEE for previews. Renders take longer.
