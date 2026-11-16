@@ -69,6 +69,30 @@ cp -r claude-blender-skills/skills/* ~/.claude/skills/
 Restart Claude Code. The skills load by themselves when you ask for "a cinematic Blender shot", "a realistic forest in Blender",
 "a short film in Blender", "edit my renders in Premiere", "finish it in After Effects", or any single step ("night lighting for my city", "a clay build-up reveal").
 
+### Only for one project
+
+Claude Code also loads skills from `.claude/skills/` inside a project folder. Then they work only in that project, and you can
+commit them with it. The skills are in `skills/` in this repo, not in `.claude/skills/`. Copy the *contents* of `skills/`:
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/mromidev/claude-blender-skills.git
+mkdir -p /path/to/your/project/.claude/skills
+cp -r claude-blender-skills/skills/* /path/to/your/project/.claude/skills/
+```
+
+Windows (PowerShell):
+
+```powershell
+git clone https://github.com/mromidev/claude-blender-skills.git
+New-Item -ItemType Directory -Force "C:\path\to\your\project\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force claude-blender-skills\skills\* "C:\path\to\your\project\.claude\skills\"
+```
+
+Check: `.claude/skills/blender-film/SKILL.md` must exist. If you see `.claude/skills/skills/...`, one folder level is too many.
+Restart Claude Code after copying. To copy only some skills, copy just those folders (for example `premiere-edit`).
+
 ### Claude app (claude.ai / desktop)
 
 If your Claude app lets you add custom skills, zip one skill folder (for example `skills/blender-film`) and upload it there.
