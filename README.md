@@ -12,6 +12,9 @@ renders the scene in your Blender. You don't need to watch the videos first.
 | [`blender-forest`](skills/blender-forest/SKILL.md) | Ultra-realistic forest with a car driving through it, built by following a long tutorial: own scatter system, own car rig, render benchmark | [How to Make an Ultra-Realistic 3D Environment Using Claude](https://www.youtube.com/watch?v=Udahf4a0UwQ) |
 | [`blender-car-film`](skills/blender-car-film/SKILL.md) | 20 s cinematic story film on a snowy night: real car model, set built in Python, snow particles, 6 hand-held cameras, render from 5-8 h down to 1 h | [How I Built This 3D Short Film With Claude in Blender](https://www.youtube.com/watch?v=BagZ55ac4xs) |
 
+Also included, imported from [arjun988/blender-skills](https://github.com/arjun988/blender-skills) (MIT, see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)):
+[`lighting`](skills/lighting/SKILL.md), [`camera-cinematography`](skills/camera-cinematography/SKILL.md) and [`rendering`](skills/rendering/SKILL.md), general-purpose skills you can use on their own or alongside the films.
+
 <p>
 <img src="docs/img/night_final.jpg" width="32%" alt="Night city drone shot">
 <img src="docs/img/forest_car.jpg" width="32%" alt="Car in a sunlit forest">
@@ -42,7 +45,14 @@ renders the scene in your Blender. You don't need to watch the videos first.
 
 ## Install
 
-### Claude Code (recommended)
+### Claude Code plugin
+
+```
+/plugin marketplace add mromidev/claude-blender-skills
+/plugin install claude-blender-skills@claude-blender-skills
+```
+
+### Claude Code, manual copy
 
 Windows (PowerShell):
 

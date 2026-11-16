@@ -1,0 +1,7 @@
+{
+  "name": "claude-blender-skills",
+  "version": "1.0.0",
+  "description": "Free Claude skills that make realistic Blender animations: night drone film, realistic forest, snowy car short film, plus lighting, camera and rendering skills.",
+  "license": "MIT",
+  "skills": "./skills/"
+}

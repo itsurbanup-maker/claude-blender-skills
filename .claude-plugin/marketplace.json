@@ -1,0 +1,17 @@
+{
+  "name": "claude-blender-skills",
+  "owner": { "name": "mromidev", "url": "https://github.com/mromidev" },
+  "metadata": { "description": "Claude skills for realistic Blender animation", "version": "1.0.0" },
+  "plugins": [
+    {
+      "name": "claude-blender-skills",
+      "source": "./",
+      "description": "Complete Blender film workflows with real scripts (blender-film, blender-forest, blender-car-film) plus lighting, camera-cinematography and rendering skills.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "category": "creative",
+      "keywords": ["blender", "3d", "animation", "cinematic", "rendering"],
+      "skills": "./skills/"
+    }
+  ]
+}
