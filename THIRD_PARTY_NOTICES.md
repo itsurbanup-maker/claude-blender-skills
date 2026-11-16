@@ -2,7 +2,9 @@
 
 The skills `lighting`, `camera-cinematography` and `rendering` (including the
 `reference-image-match.md` and `visual-match-checklist.md` files under `skills/rendering/references/`)
-come from https://github.com/arjun988/blender-skills and are used under the MIT License:
+come from https://github.com/arjun988/blender-skills and are used under the MIT License.
+In fact all skills in `skills/` other than `blender-film`, `blender-forest` and `blender-car-film`
+(94 skills plus the shared `skills/references/` folder) come from that repository.
 
 MIT License
 
