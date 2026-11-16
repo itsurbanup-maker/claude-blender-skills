@@ -100,6 +100,8 @@ Open a skill's `SKILL.md`, copy all of it into a new Claude chat, then describe 
 
 ## How Claude controls Blender
 
+Two ways: the bundled `bridge.py` socket described below, or the `blender-mcp` server, set up in [docs/BLENDER_MCP_SETUP.md](docs/BLENDER_MCP_SETUP.md) (`.mcp.json` is included). Use one at a time, both use port 9876.
+
 ```
 Claude Code  --python tools/send.py script.py-->  bridge.py inside your open Blender (127.0.0.1:9876)
      ^                                                         |
